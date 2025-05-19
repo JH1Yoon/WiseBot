@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.develop.wisebot.WiseBotApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-19T06:13:16.271Z" hostname="JHY" time="1.09">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.develop.wisebot.WiseBotApplicationTests" time="1.09"/>
+  <system-out><![CDATA[15:13:01.707 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.develop.wisebot.WiseBotApplicationTests]: WiseBotApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:13:01.886 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.develop.wisebot.WiseBotApplication for test class com.develop.wisebot.WiseBotApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.1)
+
+2025-05-19T15:13:02.703+09:00  INFO 19420 --- [WiseBot] [    Test worker] c.d.wisebot.WiseBotApplicationTests      : Starting WiseBotApplicationTests using Java 17.0.15 with PID 19420 (started by jyun0 in C:\Users\jyun0\IdeaProjects\WiseBot)
+2025-05-19T15:13:02.704+09:00 DEBUG 19420 --- [WiseBot] [    Test worker] c.d.wisebot.WiseBotApplicationTests      : Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-05-19T15:13:02.707+09:00  INFO 19420 --- [WiseBot] [    Test worker] c.d.wisebot.WiseBotApplicationTests      : The following 1 profile is active: "dev"
+2025-05-19T15:13:04.735+09:00  INFO 19420 --- [WiseBot] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-19T15:13:04.741+09:00  INFO 19420 --- [WiseBot] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-19T15:13:05.515+09:00  INFO 19420 --- [WiseBot] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 754 ms. Found 1 JPA repository interface.
+2025-05-19T15:13:05.565+09:00  INFO 19420 --- [WiseBot] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-19T15:13:05.571+09:00  INFO 19420 --- [WiseBot] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-05-19T15:13:05.634+09:00  INFO 19420 --- [WiseBot] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.develop.wisebot.domain.user.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-05-19T15:13:05.634+09:00  INFO 19420 --- [WiseBot] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+2025-05-19T15:13:07.148+09:00  INFO 19420 --- [WiseBot] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-19T15:13:07.289+09:00  INFO 19420 --- [WiseBot] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-05-19T15:13:07.371+09:00  INFO 19420 --- [WiseBot] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-19T15:13:08.035+09:00  INFO 19420 --- [WiseBot] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-19T15:13:08.082+09:00  INFO 19420 --- [WiseBot] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-19T15:13:08.623+09:00  INFO 19420 --- [WiseBot] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ba08a09
+2025-05-19T15:13:08.628+09:00  INFO 19420 --- [WiseBot] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-19T15:13:10.432+09:00  INFO 19420 --- [WiseBot] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-19T15:13:10.874+09:00  INFO 19420 --- [WiseBot] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-19T15:13:10.900+09:00  INFO 19420 --- [WiseBot] [    Test worker] JWT 관련 로그                                : Secret key initialized successfully
+2025-05-19T15:13:11.848+09:00  WARN 19420 --- [WiseBot] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-19T15:13:11.899+09:00  WARN 19420 --- [WiseBot] [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 06241245-3a56-4027-a6ac-a0b471dd7414
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-19T15:13:11.916+09:00  INFO 19420 --- [WiseBot] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-19T15:13:16.245+09:00  INFO 19420 --- [WiseBot] [    Test worker] c.d.wisebot.WiseBotApplicationTests      : Started WiseBotApplicationTests in 14.076 seconds (process running for 16.227)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
