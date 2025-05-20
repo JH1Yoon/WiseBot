@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum SuccessMessage {
 
+    // Chat
+    CHAT_DELETED(HttpStatus.OK, "%s의 %s 채팅을 삭제했습니다."),
+
     // 기본 코드
     POSTED(HttpStatus.CREATED, "%s을(를) 등록했습니다."),
     CREATED(HttpStatus.CREATED, "%s을(를) 생성했습니다."),
@@ -22,5 +25,9 @@ public enum SuccessMessage {
 
     public String getMessage(String detail) {
         return String.format(message, detail);
+    }
+
+    public String getMessage(String detail1, String detail2) {
+        return String.format(message, detail1, detail2);
     }
 }
