@@ -23,7 +23,10 @@ public class Chat {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
+    @Column(columnDefinition = "TEXT")
     private String question;
+
+    @Column(columnDefinition = "TEXT")
     private String answer;
 
     private LocalDateTime createdAt;
