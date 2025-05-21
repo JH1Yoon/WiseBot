@@ -1,4 +1,4 @@
-package com.develop.wisebot.domain.controller;
+package com.develop.wisebot.domain.chat.controller;
 
 import com.develop.wisebot.common.message.SuccessMessage;
 import com.develop.wisebot.common.message.SuccessResponse;
