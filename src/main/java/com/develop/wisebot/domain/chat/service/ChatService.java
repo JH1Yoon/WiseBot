@@ -6,6 +6,7 @@ import com.develop.wisebot.domain.chat.dto.request.ChatRequest;
 import com.develop.wisebot.domain.chat.dto.response.ChatResponse;
 import com.develop.wisebot.domain.chat.entity.Chat;
 import com.develop.wisebot.domain.chat.repository.ChatRepository;
+import com.develop.wisebot.domain.openai.service.OpenAiService;
 import com.develop.wisebot.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class ChatService {
     private final ChatRepository chatRepository;
+    private final OpenAiService openAiService;
 
     /** 채팅 저장
      *
@@ -27,7 +29,7 @@ public class ChatService {
      */
     @Transactional
     public ChatResponse save(User user, ChatRequest chatRequest) {
-        String mockAnswer = "GPT 응답은 추후 연동됩니다.";
+        String mockAnswer = openAiService.askToGpt(chatRequest.getQuestion());
 
         // 로그인한 사용자일 때만 저장
         if (user != null) {

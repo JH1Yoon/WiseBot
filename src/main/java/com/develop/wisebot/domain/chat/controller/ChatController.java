@@ -4,10 +4,10 @@ import com.develop.wisebot.common.message.SuccessMessage;
 import com.develop.wisebot.common.message.SuccessResponse;
 import com.develop.wisebot.domain.chat.dto.request.ChatRequest;
 import com.develop.wisebot.domain.chat.dto.response.ChatResponse;
+import com.develop.wisebot.domain.chat.dto.response.PageResponse;
 import com.develop.wisebot.domain.chat.service.ChatService;
 import com.develop.wisebot.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +31,11 @@ public class ChatController {
 
     // 채팅 이력 조회
     @GetMapping
-    public ResponseEntity<Page<ChatResponse>> getChats(
+    public ResponseEntity<PageResponse<ChatResponse>> getChats(
             @AuthenticationPrincipal User user,
             @PageableDefault(size = 10, sort = "createdAt", direction = DESC) Pageable pageable
     ) {
-        return ResponseEntity.ok(chatService.getAll(user, pageable));
+        return ResponseEntity.ok(PageResponse.from(chatService.getAll(user, pageable)));
     }
 
     // 채팅 삭제
