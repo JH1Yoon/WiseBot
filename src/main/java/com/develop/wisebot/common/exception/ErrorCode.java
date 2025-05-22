@@ -13,7 +13,8 @@ public enum ErrorCode {
     // Chat
     CHAT_IS_EMPTY(HttpStatus.BAD_REQUEST, "%s의 채팅 입력이 비어 있습니다."),
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "로그인이 필요합니다."),
-    CHAT_INVALID_ACCESS(HttpStatus.UNAUTHORIZED, "본인의 채팅만 삭제할 수 있습니다."),
+    CHAT_INVALID_ACCESS(HttpStatus.UNAUTHORIZED, "본인의 채팅만 접근할 수 있습니다."),
+    GUEST_LIMIT_EXCEEDED(HttpStatus.TOO_MANY_REQUESTS, "게스트는 하루에 최대 3번 질문할 수 있습니다."),
 
     // 기본 코드
     NOT_FOUND(HttpStatus.NOT_FOUND, "%s을(를) 찾지못했습니다."),
