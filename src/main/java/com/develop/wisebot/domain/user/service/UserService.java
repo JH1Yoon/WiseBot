@@ -3,14 +3,13 @@ package com.develop.wisebot.domain.user.service;
 import com.develop.wisebot.common.exception.CustomException;
 import com.develop.wisebot.common.exception.ErrorCode;
 import com.develop.wisebot.common.jwt.JwtUtil;
+import com.develop.wisebot.domain.chat.entity.Chat;
+import com.develop.wisebot.domain.chat.repository.ChatRepository;
 import com.develop.wisebot.domain.user.dto.request.DeleteRequest;
 import com.develop.wisebot.domain.user.dto.request.LoginRequest;
 import com.develop.wisebot.domain.user.dto.request.SignupRequest;
 import com.develop.wisebot.domain.user.dto.request.UserUpdateRequest;
-import com.develop.wisebot.domain.user.dto.response.ChangeResponse;
-import com.develop.wisebot.domain.user.dto.response.LoginResponse;
-import com.develop.wisebot.domain.user.dto.response.SignupResponse;
-import com.develop.wisebot.domain.user.dto.response.searchResponse;
+import com.develop.wisebot.domain.user.dto.response.*;
 import com.develop.wisebot.domain.user.entity.User;
 import com.develop.wisebot.domain.user.entity.UserRoleEnum;
 import com.develop.wisebot.domain.user.repository.UserRepository;
@@ -20,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,13 +27,15 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
+    private final ChatRepository chatRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
     @Value("${admin.key}")
     private String adminKey;
 
-    /** 회원가입
+    /**
+     * 회원가입
      *
      * @param signupRequest
      * @param inputAdminKey
@@ -72,7 +74,8 @@ public class UserService {
         return new SignupResponse(user.getUsername(), user.getEmail(), List.of(roleDto));
     }
 
-    /** 로그인
+    /**
+     * 로그인
      *
      * @param loginRequest
      * @return LoginResponse
@@ -88,7 +91,8 @@ public class UserService {
         return new LoginResponse(jwtUtil.createToken(user.getEmail(), user.getUsername(), role));
     }
 
-    /** 가입한 모든 유저 조회(관리자만)
+    /**
+     * 가입한 모든 유저 조회(관리자만)
      *
      * @return List<searchResponse>
      */
@@ -98,7 +102,8 @@ public class UserService {
                 .toList();
     }
 
-    /** 회원 정보 변경
+    /**
+     * 회원 정보 변경
      *
      * @param user
      * @param userUpdateRequest
@@ -136,6 +141,44 @@ public class UserService {
         checkPassword(deleteRequest.getPassword(), user.getPassword());
 
         userRepository.delete(managedUser);
+    }
+
+
+    /** 관리자 통계 항목 조회
+     *
+     * @return AdminStatisticsResponse
+     */
+    public AdminStatisticsResponse getStatistics() {
+        long totalChats = chatRepository.count();
+        long totalUsers = userRepository.count();
+
+        long todayChats = chatRepository.countByCreatedAtBetween(
+                LocalDate.now().atStartOfDay(),
+                LocalDate.now().atStartOfDay().plusDays(1)
+        );
+
+        long todayUsers = userRepository.countByCreatedAtBetween(
+                LocalDate.now().atStartOfDay(),
+                LocalDate.now().atStartOfDay().plusDays(1)
+        );
+
+        List<Chat> recentChats = chatRepository.findTop5ByOrderByCreatedAtDesc();
+
+        List<AdminStatisticsResponse.ChatSummary> recentChatSummaries = recentChats.stream()
+                .map(chat -> AdminStatisticsResponse.ChatSummary.builder()
+                        .question(chat.getQuestion())
+                        .answer(chat.getAnswer())
+                        .createdAt(chat.getCreatedAt())
+                        .build()).toList();
+
+        return AdminStatisticsResponse.builder()
+                .totalChats(totalChats)
+                .totalUsers(totalUsers)
+                .todayChats(todayChats)
+                .todayUsers(todayUsers)
+                .recentChats(recentChatSummaries)
+                .build();
+
     }
 
     // 비밀번호 확인
