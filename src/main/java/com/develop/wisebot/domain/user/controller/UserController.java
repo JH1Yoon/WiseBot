@@ -6,10 +6,7 @@ import com.develop.wisebot.domain.user.dto.request.DeleteRequest;
 import com.develop.wisebot.domain.user.dto.request.LoginRequest;
 import com.develop.wisebot.domain.user.dto.request.SignupRequest;
 import com.develop.wisebot.domain.user.dto.request.UserUpdateRequest;
-import com.develop.wisebot.domain.user.dto.response.ChangeResponse;
-import com.develop.wisebot.domain.user.dto.response.LoginResponse;
-import com.develop.wisebot.domain.user.dto.response.SignupResponse;
-import com.develop.wisebot.domain.user.dto.response.searchResponse;
+import com.develop.wisebot.domain.user.dto.response.*;
 import com.develop.wisebot.domain.user.entity.User;
 import com.develop.wisebot.domain.user.service.UserService;
 import jakarta.validation.Valid;
@@ -60,5 +57,12 @@ public class UserController {
         userService.delete(user, deleteRequest);
         return ResponseEntity.status(SuccessMessage.DELETED.getStatus())
                 .body(new SuccessResponse(SuccessMessage.DELETED.getStatus().value(), SuccessMessage.DELETED.getMessage(user.getUsername())));
+    }
+
+    // 관리자 통계 항목 조회
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin/statistics")
+    public ResponseEntity<AdminStatisticsResponse> getStatistics(@AuthenticationPrincipal User user) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getStatistics());
     }
 }

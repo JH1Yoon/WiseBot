@@ -9,17 +9,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Long> {
     Optional<Chat> findById(Long chatId);
+    Page<Chat> findByUser(User user, Pageable pageable);
+    long countByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
+    List<Chat> findTop5ByOrderByCreatedAtDesc();
 
     default Chat findByIdOrThrow(Long chatId) {
         return findById(chatId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND, Long.toString(chatId)));
     }
-
-    Page<Chat> findByUser(User user, Pageable pageable);
 
     default Page<Chat> findByUserOrThrow(User user, Pageable pageable) {
         Page<Chat> page = findByUser(user, pageable);
