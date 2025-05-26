@@ -41,7 +41,7 @@ public class UserController {
     // 가입한 모든 회원 조회(관리자만)
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/search")
-    public ResponseEntity<List<searchResponse>> search(@AuthenticationPrincipal User user) {
+    public ResponseEntity<List<SearchResponse>> search(@AuthenticationPrincipal User user) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.search());
     }
 

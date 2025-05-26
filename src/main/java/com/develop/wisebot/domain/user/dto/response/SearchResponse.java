@@ -6,13 +6,13 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class searchResponse {
+public class SearchResponse {
     private String username;
     private String email;
     private String role;
 
-    public static searchResponse from(User user) {
-        return searchResponse.builder()
+    public static SearchResponse from(User user) {
+        return SearchResponse.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole().name())

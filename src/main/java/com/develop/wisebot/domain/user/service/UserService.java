@@ -94,11 +94,11 @@ public class UserService {
     /**
      * 가입한 모든 유저 조회(관리자만)
      *
-     * @return List<searchResponse>
+     * @return List<SearchResponse>
      */
-    public List<searchResponse> search() {
+    public List<SearchResponse> search() {
         return userRepository.findAll().stream()
-                .map(searchResponse::from)
+                .map(SearchResponse::from)
                 .toList();
     }
 
@@ -127,12 +127,10 @@ public class UserService {
         return new ChangeResponse(managedUser.getUsername(), managedUser.getEmail(), List.of(roleDto));
     }
 
-    /**
-     * 회원 탈퇴
+    /** 회원 탈퇴
      *
      * @param user
      * @param deleteRequest
-     * @return
      */
     @Transactional
     public void delete(User user, DeleteRequest deleteRequest) {

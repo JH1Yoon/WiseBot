@@ -31,9 +31,8 @@ public class ChatService {
 
     private final Map<String, GuestUsage> guestUsageMap = new ConcurrentHashMap<>();
 
-
-    /**
-     * 채팅
+    /** 채팅
+     *
      *
      * @param user
      * @param chatRequest
@@ -81,7 +80,12 @@ public class ChatService {
                 .build();
     }
 
-    // 회원의 채팅 단일 조회
+    /** 회원의 채팅 단일 조회
+     *
+     * @param user
+     * @param chatId
+     * @return ChatResponse
+     */
     public ChatResponse getById(User user, Long chatId) {
         Chat chat = chatRepository.findByIdOrThrow(chatId);
 
@@ -96,8 +100,8 @@ public class ChatService {
                 .build();
     }
 
-    /**
-     * 회원의 채팅 이력 모두 조회
+    /** 회원의 채팅 이력 모두 조회
+     *
      *
      * @param user
      * @param keyword
@@ -124,8 +128,8 @@ public class ChatService {
                 .build());
     }
 
-    /**
-     * 채팅 삭제
+    /** 채팅 삭제
+     *
      *
      * @param user
      * @param chatId
