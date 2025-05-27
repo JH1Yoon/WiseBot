@@ -2,7 +2,12 @@ package com.develop.wisebot.domain.user.repository;
 
 import com.develop.wisebot.common.exception.CustomException;
 import com.develop.wisebot.common.exception.ErrorCode;
+import com.develop.wisebot.domain.user.dto.response.SignupResponse;
 import com.develop.wisebot.domain.user.entity.User;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

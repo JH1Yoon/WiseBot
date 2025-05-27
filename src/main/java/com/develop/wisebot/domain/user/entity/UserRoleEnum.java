@@ -1,5 +1,8 @@
 package com.develop.wisebot.domain.user.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "사용자 역할", example = "ADMIN", allowableValues = {"USER", "ADMIN"})
 public enum UserRoleEnum {
     USER(Authority.USER),
     ADMIN(Authority.ADMIN);
