@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.develop.wisebot.domain.openai.service.OpenAiServiceTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-05-26T07:28:40.769Z" hostname="JHY" time="0.215">
+  <properties/>
+  <testcase name="askToGpt - 성공적으로 응답을 받을 경우" classname="com.develop.wisebot.domain.openai.service.OpenAiServiceTest" time="0.215">
+    <failure message="java.lang.NullPointerException: Cannot invoke &quot;org.springframework.web.reactive.function.client.WebClient$ResponseSpec.bodyToMono(java.lang.Class)&quot; because &quot;this.responseSpec&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.springframework.web.reactive.function.client.WebClient$ResponseSpec.bodyToMono(java.lang.Class)&quot; because &quot;this.responseSpec&quot; is null
+	at com.develop.wisebot.domain.openai.service.OpenAiServiceTest.askToGpt_success(OpenAiServiceTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
